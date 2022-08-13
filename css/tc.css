@@ -1,0 +1,57 @@
+.tc{
+	width:800px; 
+	margin:0 auto;
+	margin-top: 50px;
+	outline: 3px solid black;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-left: 10px;
+	background-color: white;
+}
+	
+p{
+	font-family: 'Kdam Thmor Pro', sans-serif;
+	font-size: 25px;
+}
+
+h2{
+	font-size: 30px;
+	font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+h1{
+	font-size: 50px;
+	font-family: 'Kdam Thmor Pro', sans-serif;
+}
+
+.form{
+	width:800px; 
+	margin:0 auto;
+	margin-top: 50px;
+	padding-bottom: 10px;
+}
+
+button{
+	font-size: 30px !important;
+}
+
+.ag{
+	font-size: 30px;
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+.ck{
+	padding-left: 10px;
+}
+
+.error{
+	width:800px; 
+	margin:0 auto;
+	margin-top: 50px;
+	padding-bottom: 30px;
+	font-size: 30px;
+	color: orangered;
+}

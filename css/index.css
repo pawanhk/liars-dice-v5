@@ -1,0 +1,38 @@
+.main-content {
+	margin-top: 90px;
+	border: 5px;
+	border-color: black;
+
+}
+
+.main-content h1{
+	font-size: 100px;
+	font-family: 'Kdam Thmor Pro', sans-serif!important;
+	font-family: 'Press Start 2P', cursive;
+}
+
+.main-content a{
+	text-decoration: none;
+	color: white;
+}
+
+.main-content a:hover{
+	text-decoration: none;
+	color: #64ff72 !important;
+}
+
+
+
+.button-cls button{
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 25px;
+	padding: 20px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+ 	white-space: nowrap;
+ 	font-family: 'Kdam Thmor Pro', sans-serif!important;
+ 	font-family: 'Press Start 2P', cursive;
+}
+
+

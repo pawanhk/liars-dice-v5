@@ -1,0 +1,65 @@
+.master-table{
+  margin-top: 10px;
+  margin-left: 30px;
+  table-layout: fixed;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+
+td{
+  position: fixed;
+}
+
+img{
+  width: 30px;
+  height: 30px;
+}
+
+.dice-rem {
+  color: green;
+}
+
+.m-bid{
+  color: yellow;
+}
+
+.sep-line{
+  margin-left: 280px;
+  margin-top: 10px ;
+  border-left: 6px solid black;
+  height: 560px;
+  position: fixed;
+}
+
+.move-ver{
+  margin-left: 350px;
+}
+
+.move-er{
+  margin-left: 800px ;
+}
+
+.form-control{
+  width: 30px !important;
+}
+
+.col-sm{
+  outline: 2px solid black;
+  margin-left: 5px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  background-color: white;
+}
+
+.move-over {
+  padding-left: 300px;
+}
+
+
+
+
+
