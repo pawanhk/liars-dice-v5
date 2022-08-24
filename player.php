@@ -131,6 +131,8 @@ if(mysqli_num_rows($result) > 0){
    ?>
 </style>
 <body class="d-flex flex-column min-vh-100">
+	<script type="text/javascript" src="autocoms.js"></script>
+	<script type="text/javascript" src="autoTurn.js"></script>
 	<script type="text/javascript" src="autoReaction.js"></script>
 	<script type="text/javascript" src="auto.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -176,6 +178,7 @@ if(mysqli_num_rows($result) > 0){
 		<div class="cols">
 					<div class="col-1">
 						<td>
+							<div id="liveComs"></div>
 							<h1 class="main-header"> Room: <?php echo $room; ?>  </h1>
 							<p>   session: <?php echo $session; ?> </p>
 							<?php // main button controls here ?>
@@ -248,56 +251,7 @@ if(mysqli_num_rows($result) > 0){
 											<h3> Win streaks: <?php echo $ptws; ?>   </h3>
 											<br> <br>
 											<h3> Commentary: 
-												<?php
-												// decide who plays 
-												$sql = "SELECT * FROM game_data_mult WHERE turn='$turn'";
-												$result = mysqli_query($conn,$sql);
-												if(mysqli_num_rows($result)>0){
-													while ($row = mysqli_fetch_assoc($result)) {
-														$wh = $row['WH'];
-													}
-												}
-												if ($wh == "por"){
-													echo  $opp . " has rolled dice !";
-													$turn_complete = false;
-												}
-												if($wh == "NNN"){
-													echo "waiting for players to make move !";
-													$turn_complete = false;
-												}
-												if($wh == "ptr"){
-													echo $currp ." has rolled dice  !";
-													$turn_complete = false;
-												}
-												if($wh == "pob"){
-													echo $opp." has raised bet!";
-													$turn_complete = false;
-												}
-												if($wh == "ptb"){
-													echo $currp ." has raised bet!";
-													$turn_complete = false;
-												}
-												if($wh == "poc"){
-													echo  $opp ." has called ! ";
-													$turn_complete = false;
-												}
-												if($wh == "ptc"){
-													echo $currp . " has called ! ";
-													$turn_complete = false;
-												}
-												if($whoWon == $currp){
-													echo  $currp . " wins round ! ";
-													$turn_complete = true;
-												}
-												if($whoWon == $opp){
-													echo  $opp . " wins round ! ";
-													$turn_complete = true;
-												}
-												if($wh == "reset"){
-													echo $opp . " has reset the game, <br>waiting for players to make a move";
-												}
-											?>
-
+												<div id="liveComs"></div>
 											</h3>
 										</div>
 										<div class="comment">

@@ -1,8 +1,6 @@
 <?php
-
-// get live bid amount
-error_reporting(E_ALL ^ E_WARNING);
 include "connect.php";
+error_reporting(E_ALL ^ E_WARNING);
 ob_start();
 session_start(); 
 $username =  $_SESSION['username'];
@@ -40,6 +38,11 @@ if(mysqli_num_rows($result) > 0){
 }
 
 
+// functions
+function request($sec=10){
+	header("Refresh:".$sec);
+}
+
 
 // start by creating a session if not already there 
 	// insert into table if not there
@@ -49,16 +52,21 @@ if(mysqli_num_rows($result) > 0){
 	// do nothing
 	while($row = mysqli_fetch_assoc($result)){
 		$turn = $row['turn'];
-		$_SESSION['turn'] = $turn;
 	}
 }else{
 	// creating session
 	$turn = 1;
 	$sql = "INSERT INTO game_data_mult (session,turn,room,po) VALUES ('$session','$turn','$room','$currp')";
 	if(mysqli_query($conn,$sql)){
-		//header("Refresh:0","host.php");
+		header("Refresh:0","host.php");
 	}
-	$_SESSION['turn'] = $turn;
+}
+
+$sql = "UPDATE game_data_mult SET po='$currp',room='$room' WHERE session='$session' AND turn='$turn'";
+if(mysqli_query($conn,$sql)){
+	// done
+}else{
+	echo "user joining error";
 }
 
 
@@ -85,12 +93,7 @@ if(mysqli_num_rows($result) > 0){
 	}
 }
 
+echo $wh
 
-// now we go
-echo "	<h3> Face Value:  ".  $cba .  "  </h3>
-		<h3> Amount:  ".  $cbq .  " </h3>" ;
-
-
-
-
+//request(5);
 ?>

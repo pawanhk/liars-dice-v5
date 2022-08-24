@@ -17,7 +17,7 @@
         var now = new Date();
         // Date string is appended as a query with live data 
         // for not to use the cached version 
-        var url = 'getPlayer.php?' + now.getTime();
+        var url = 'geteverything.php?' + now.getTime();
         xhr = getXmlHttpRequestObject();
         xhr.onreadystatechange = evenHandler;
         // asynchronous requests
@@ -33,11 +33,11 @@
         // Check response is ready or not
         if(xhr.readyState == 4 && xhr.status == 200)
         {
-            dataDiv = document.getElementById('livePlayer');
+            dataDiv = document.getElementById('liveData');
             // Set current data text
             dataDiv.innerHTML = xhr.responseText;
             // Update the live data every 1 sec
-            setTimeout(updateLiveData(), 2000);
+            setTimeout(updateLiveData(), 1000);
 
         }
     }

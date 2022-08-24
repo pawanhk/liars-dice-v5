@@ -1,29 +1,29 @@
  window.addEventListener('load', function()
 {
-    var xhr = null;
+    var x = null;
 
     getXmlHttpRequestObject = function()
     {
-        if(!xhr)
+        if(!x)
         {               
             // Create a new XMLHttpRequest object 
-            xhr = new XMLHttpRequest();
+            x = new XMLHttpRequest();
         }
-        return xhr;
+        return x;
     };
 
     updateLiveData = function()
     {
-        var now = new Date();
+        var n = new Date();
         // Date string is appended as a query with live data 
         // for not to use the cached version 
-        var url = 'getPlayer.php?' + now.getTime();
-        xhr = getXmlHttpRequestObject();
-        xhr.onreadystatechange = evenHandler;
+        var url = 'getcoms.php?' + n.getTime();
+        x = getXmlHttpRequestObject();
+        x.onreadystatechange = evenHandler;
         // asynchronous requests
-        xhr.open("GET", url, true);
+        x.open("GET", url, true);
         // Send the request over the network
-        xhr.send(null);
+        x.send(null);
     };
 
     updateLiveData();
@@ -31,15 +31,16 @@
     function evenHandler()
     {
         // Check response is ready or not
-        if(xhr.readyState == 4 && xhr.status == 200)
+        if(x.readyState == 4 && x.status == 200)
         {
-            dataDiv = document.getElementById('livePlayer');
+            dataDiv = document.getElementById('liveComs');
             // Set current data text
-            dataDiv.innerHTML = xhr.responseText;
+            dataDiv.innerHTML = x.responseText;
             // Update the live data every 1 sec
-            setTimeout(updateLiveData(), 2000);
+            setTimeout(updateLiveData(), 4000);
 
         }
     }
 
 });
+

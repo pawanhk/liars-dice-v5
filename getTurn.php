@@ -49,16 +49,14 @@ if(mysqli_num_rows($result) > 0){
 	// do nothing
 	while($row = mysqli_fetch_assoc($result)){
 		$turn = $row['turn'];
-		$_SESSION['turn'] = $turn;
 	}
 }else{
 	// creating session
 	$turn = 1;
 	$sql = "INSERT INTO game_data_mult (session,turn,room,po) VALUES ('$session','$turn','$room','$currp')";
 	if(mysqli_query($conn,$sql)){
-		//header("Refresh:0","host.php");
+		header("Refresh:0","host.php");
 	}
-	$_SESSION['turn'] = $turn;
 }
 
 
@@ -87,8 +85,8 @@ if(mysqli_num_rows($result) > 0){
 
 
 // now we go
-echo "	<h3> Face Value:  ".  $cba .  "  </h3>
-		<h3> Amount:  ".  $cbq .  " </h3>" ;
+echo "<h1 class='main-header'>  Turn: ". $turn ." </h1><br>";
+
 
 
 

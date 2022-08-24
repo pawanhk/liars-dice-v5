@@ -113,9 +113,9 @@ if($wh=="kick"){
 
 // decide who starts the betting process
 // default the better to host 
-if($wh == "pob"){
-	$_SESSION['current_better'] = $opp;
-}
+
+// start by setting host to better 
+// now get the current better from the win 
 
 
 //request(5);
@@ -147,6 +147,7 @@ if($wh == "pob"){
    ?>
 </style>
 <body class="d-flex flex-column min-vh-100">
+	<script type="text/javascript" src="autocoms.js"></script>
 	<script type="text/javascript" src="autoPlayer.js"></script>
 	<script type="text/javascript" src="autoReaction.js"></script>
 	<script type="text/javascript" src="auto.js"></script>
@@ -232,7 +233,6 @@ if($wh == "pob"){
 												?></small><br>
 						</td>
 					</div>
-					<div id="reactionTime"> </div>
 					<div class="sep-line"></div>
 					<div class="col-2">
 						<td class="move-over">
@@ -259,65 +259,7 @@ if($wh == "pob"){
 											<h3> Win streaks: <?php echo $pows; ?>   </h3>
 											<br>
 											<h3> Commentary: 
-												<?php
-												// decide who plays 
-												$sql = "SELECT * FROM game_data_mult WHERE turn='$turn'";
-												$result = mysqli_query($conn,$sql);
-												if(mysqli_num_rows($result)>0){
-													while ($row = mysqli_fetch_assoc($result)) {
-														$wh = $row['WH'];
-													}
-												}
-												if ($wh == "por"){
-													echo $currp . " has rolled dice !";
-													$turn_complete = false;
-												}
-												if($wh == "NNN"){
-													echo "waiting for players to make move !";
-													$turn_complete = false;
-													$allow = false;
-												}
-												if($wh == "ptr"){
-													echo  $opp ." has rolled dice  !";
-													$turn_complete = false;
-													$allow = false;
-												}
-												if($wh == "pob"){
-													echo $currp." has raised bet!";
-													$turn_complete = false;
-													$allow = false;
-												}
-												if($wh == "ptb"){
-													echo  $opp ." has raised bet!";
-													$turn_complete = false;
-													$allow = false;
-												}
-												if($wh == "poc"){
-													echo  $currp ." has called ! ";
-													$turn_complete = false;
-													$allow = true;
-												}
-												if($wh == "ptc"){
-													echo  $opp . " has called ! ";
-													$turn_complete = true;
-													$allow = true;
-												}	
-												if($whoWon == $currp && $allow){
-													echo $curpp . " wins round ! ";
-													$turn_complete = true;
-													$allow = true;
-												}
-												if($whoWon == $opp && $allow){
-													echo $opp . " wins round ! ";
-													$turn_complete = true;
-												}
-												if($wh == "reset"){
-													echo $currp . " has reset the game, <br>waiting for players to make a move";
-												}
-												if($wh == "kick"){
-													echo "player " . $opp . " removed by host";
-												}
-											?>
+												<div id="liveComs"></div>
 											</h3>
 										</div>
 										<div class="comment">
@@ -469,7 +411,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 		$amt = $_POST['amt'];
 		$qty = $_POST['qty'];
 		// player one
-		$sql = "UPDATE game_data_mult SET cba='$amt',cbq='$qty',WH='pob' WHERE turn='$turn' AND session='$session'";
+		$sql = "UPDATE game_data_mult SET cba='$amt',cbq='$qty',WH='pob',curr='player' WHERE turn='$turn' AND session='$session'";
 		$out = true;
 		if(mysqli_query($conn,$sql)){
 			header("Refresh:0");
@@ -610,6 +552,5 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 // copy data over to multiplayer and fetch from there 
 // refresh just once here to reload everything 
-
 ob_end_flush();
 ?>

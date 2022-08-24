@@ -1,29 +1,29 @@
  window.addEventListener('load', function()
 {
-    var xhr = null;
+    var turn = null;
 
     getXmlHttpRequestObject = function()
     {
-        if(!xhr)
+        if(!turn)
         {               
             // Create a new XMLHttpRequest object 
-            xhr = new XMLHttpRequest();
+            turn = new XMLHttpRequest();
         }
-        return xhr;
+        return turn;
     };
 
     updateLiveData = function()
     {
-        var now = new Date();
+        var nowt = new Date();
         // Date string is appended as a query with live data 
         // for not to use the cached version 
-        var url = 'getPlayer.php?' + now.getTime();
-        xhr = getXmlHttpRequestObject();
-        xhr.onreadystatechange = evenHandler;
+        var urlt = 'getTurn.php?' + nowt.getTime();
+        turn = getXmlHttpRequestObject();
+        turn.onreadystatechange = evenHandler;
         // asynchronous requests
-        xhr.open("GET", url, true);
+        turn.open("GET", urlt, true);
         // Send the request over the network
-        xhr.send(null);
+        turn.send(null);
     };
 
     updateLiveData();
@@ -31,13 +31,13 @@
     function evenHandler()
     {
         // Check response is ready or not
-        if(xhr.readyState == 4 && xhr.status == 200)
+        if(turn.readyState == 4 && turn.status == 200)
         {
-            dataDiv = document.getElementById('livePlayer');
+            dataDivt = document.getElementById('liveTurn');
             // Set current data text
-            dataDiv.innerHTML = xhr.responseText;
+            dataDivt.innerHTML = turn.responseText;
             // Update the live data every 1 sec
-            setTimeout(updateLiveData(), 2000);
+            setTimeout(updateLiveData(), 1000);
 
         }
     }
